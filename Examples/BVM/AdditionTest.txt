@@ -1,0 +1,106 @@
+#include stdMissionFns.txt
+
+static int testNumber;
+
+void InitializeCommon()
+{
+2C(0x5);
+}
+
+void MissionClear_Common(float f)
+{
+i = 2C(0x27, "app:/ui/lyt_HUiMissionCleared.sgo");
+2C(0xC8, f);
+i2 = 2C(0x1E, "ui_fade_screen_simple");
+2C(0x32, i2, 3, 3.0f);
+2C(0x33, i2);
+2C(0x1F, i);
+2C(0x1F, i2);
+2C(0x3, 1);
+}
+
+void MissionClear()
+{
+2C(0x12D, 2.0f);
+2C(0xC8, 1.5f);
+2C(0x34, 0);
+2C(0x12C, "Jingle_MissionCleared");
+MissionClear_Common(6.0f);
+}
+
+void FinalMissionClear()
+{
+}
+
+void MissionEscapeClear()
+{
+}
+
+void MissionGameOverEvent()
+{
+MissionClear();
+}
+
+void SceneEffect_Snow()
+{
+}
+
+void SceneEffect_Rain(float f, float f2, float f3, float f4, float f5, float f6)
+{
+2C(0x13ED,f,f2,0.5f,f3,1.0f,2.0f,2.0f,2.0f,200.0f,f4,40.0f,f5,f6);
+}
+
+void SceneEffect_RainEx()
+{
+}
+
+void SceneEffect_FugitiveDust()
+{
+}
+
+void SceneEffect_Fog()
+{
+}
+
+void RespawnObj()
+{
+testObj = 2C(0x7D1,"プレイヤー","app:/object/SHOOTINGTARGET.sgo",0.1f,0);
+2C(0x2,"ObjDestroyed",0.1f,0);
+2C(0xF1,testObj);
+}
+
+void Main()
+{
+EconomyMode(0);
+InitializeCommon();
+2C(0x0A);
+LoadResource( "app:/ui/lyt_HUiMissionCleared.sgo", -1);
+LoadResource( "app:/ui/lyt_HUiMissionFailed.sgo", -1);
+LoadResource( "app:/ui/lyt_HUiFailedResult.sgo", -1);
+LoadResource( "app:/OBJECT/SHOOTINGTARGET.sgo", -1);
+LoadResource( "app:/OBJECT/DEMOSATELLITELASER18.sgo", -1);
+LoadMap( "app:/Map/ig_TestLightMap.mac", "fine", -1);
+2C(0x10);
+2C(0xC);
+2C(0x2710);
+2C(0xB);
+SetMap( "app:/Map/ig_TestLightMap.mac", "fine");
+SpawnPlayer( "プレイヤー" );
+testNumber = 0;
+2C(0x2,"RespawnObj",0.1f,0);
+2C(0x28,1.0f)
+PlayBGM( "BGM_E5M12_ShouriNoKizashi" );
+}
+
+void ObjDestroyed()
+{
+testNumber = testNumber + 1;
+if( testNumber == 5 )
+{
+MissionClear();
+}
+2C(0xC8, 1.0f);
+2D(0x3E8, "プレイヤー", 1.0f, "app:/OBJECT/DEMOSATELLITELASER18.sgo", 1.0f, 1, 1.0f);
+2C(0x2,"RespawnObj",0.1f,0);
+2C(0x28,1.0f)
+}
