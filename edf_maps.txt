@@ -1,0 +1,95 @@
+--Weather--
+fine
+finecloud
+cloudy
+cloudy2
+evening
+sunset
+
+--EDF 5--
+app:/Map/IG_2000MCity.mac
+			^ Very large city of skyscrapers.
+app:/Map/IG_Base502.mac
+			^ EDF base exterior in the grassy mountains.
+app:/Map/IG_Cave501.mac
+			^ "fine" weather only. Standard cave map.
+app:/Map/IG_Cave503.mac
+			^ "fine" weather only. Cave with a large room of many interconnections(?).
+app:/Map/IG_Cave504.mac	
+			^ "fine" weather only. Cave featuring a high ceiling area.
+app:/Map/IG_Kaigan502.mac
+			^ Map of the mountainous coast.
+app:/Map/IG_Sangaku506.mac
+			^ Map of the mountain area.
+app:/Map/IG_Heigen507.mac
+			^ Map of the grassy plains.
+app:/Map/IG_Desert508.mac
+			^ EDF base exterior in the desert.
+app:/Map/IG_EDFRoom01.mac
+			^ "fine" weather only. EDF base interior.
+app:/Map/IG_EDFRoom02.mac
+			^ "fine" weather only. EDF base interior with built-in ant tunnel exits (is this in both?).
+app:/Map/NG_DLC_EDFRoom03.mac
+			^ "fine" weather only. EDF base interior with a looping area.
+app:/Map/NW_Danti01.mac
+			^ Long residential city with apartment complexes.
+app:/Map/NW_Europe01.mac
+			^ European city.
+app:/Map/NW_Henden.mac
+			^ Residential rice farm town.
+app:/Map/NW_JyousuiCity.mac
+			^ City with a small water park and a water-processing plant.
+app:/Map/NW_KitaguniCity.mac
+			^ City featuring the Yahoro Station.
+app:/Map/NW_Seiyu.mac
+			^ Map of a large factory.
+app:/Map/NW_Seiyu_Night.mac
+			^ "night" weather only. Same factory map as Seiyu, but with many lights.
+app:/Map/NW_Suiden.mac
+			^ Large stretch of rice paddy fields.
+app:/Map/NW_TrainCity.mac
+			^ Skyscraper city divided by a line of many train tracks.
+app:/Map/IG_TestLightMap.mac
+			^ Resource-light, somewhat empty test city. Same one as 4.1's.
+app:/Map/IG_Test_BlueFld.mac
+			^ "fine" weather only. Same blank map as 4.1's.
+
+
+
+--EDF 4.1--
+app:/Map/NW_HillyCity_Light.mac
+			^ City with train station, construction sites, and tennis courts.
+app:/Map/NW_Kasenjiki01.mac
+			^ Very long residential area with a riverbed.
+app:/Map/NW_KousouBld01.mac
+			^ High-rise district with a park.
+app:/Map/NW_Sinsuikouen.mac
+			^ City and town divided by a water park.
+app:/Map/NW_Soukogai01.mac
+			^ Coastal port of many warehouses.
+app:/Map/IG_WreckTown01.mac
+			^ Pre-destroyed city.
+app:/Map/SK_Heigen02.mac
+			^ Map of the grassy plains.
+app:/Map/SK_Kaigan01.mac
+			^ Map of the beach.
+app:/Map/SK_Sangaku01.mac
+			^ Mountain range of valleys.
+app:/Map/SK_Sangaku02.mac
+			^ Mountain range with a center hill.
+app:/Map/SK_StepMountain01.mac
+			^ Mountain road.
+app:/Map/SK_Valley01.mac
+			^ Valley with a single bridge.
+app:/Map/SK_Crater01.mac
+			^ Map of a large crater.
+app:/Map/NW_Underground01.mac
+			^ "fine" weather only. Caves found inside subway tunnels.
+app:/Map/IG_Cave01.mac
+			^ "fine" weather only. Caves with green-ish walls.
+app:/Map/IG_HornetCave01.mac
+			^ "fine" weather only. Deep insides of a hornet's nest.
+app:/Map/IG_TestLightMap.mac
+			^ Resource-light, somewhat empty test city. Low LOD settings.
+app:/Map/IG_Test_BlueFld.mac
+			^ "fine" weather only. Completely blank map with a mucky green background.

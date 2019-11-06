@@ -1,0 +1,265 @@
+EDF projectile Types:
+LightningBullet01
+LaserBullet01
+LaserBullet02
+LaserBullet03
+FlameBullet01
+FlameBullet02
+SpiderStringBullet01
+SpiderStringBullet02
+ShockWaveBullet01
+SlashWaveBullet01
+HomingLaserBullet01
+BeamBullet01
+DecoyBullet01
+NeedleBullet01
+BarrierBullet01
+ClusterBullet01
+AcidBullet01
+NapalmBullet01
+GrenadeBullet01
+MissileBullet01
+MissileBullet02
+RocketBullet01
+RocketBullet02
+SolidBullet01
+SolidBullet02
+SmokeCandleBullet01
+ShieldBashBullet01
+SentryGunBullet01
+TargetMarkerBullet01
+SupportUnitBullet01
+PileBunkerBullet01
+BombBullet01
+PlasmaBullet01
+
+
+Ammo_Customparameter:
+
+LaserBullet01:
+{
+Flare_Colour
+Flare_Light_Colour
+float Flare_Scale
+float Flare_Light_Scale
+int Flare_Life
+int Num_Lasers
+float ???
+float ???
+float Laser_Spread
+float Laser_Speed
+int Laser_Segments
+}
+
+LaserBullet02:
+{
+int Laser_Type
+}
+MissileBullet01:
+{
+  int
+  int
+  int
+  structure
+  {
+    float
+    float
+    float
+  }
+  float Acceleration
+  float Turning_Rate
+  float Top_Speed
+  structure
+  {
+    int
+    float
+  }
+  int Homing_Delay
+}
+MissileBullet02:
+{
+  int
+  int
+  int
+  structure
+  {
+    float
+    float
+    float
+  }
+  float Acceleration
+  float Turning_Rate
+  float Top_Speed
+  structure
+  {
+    int
+    float
+  }
+  int Homing_Delay
+  int
+  Sound
+  {
+    int
+    string Sound_Name
+    float
+    float
+    float
+    float
+  }
+  struct
+  {
+    int
+    float
+    float
+  }
+  struct
+  {
+    int
+    float
+    float
+  }
+  struct
+  {
+    int
+    float
+  }
+  subprojectile_structure
+  {
+    struct
+    {
+      float
+      float
+    }
+    struct
+    {
+      float
+      float
+    }
+    int Number_Of_Projectiles
+    int
+    string Projectile_Class
+    float
+    float
+    float
+    float
+    float
+    int
+    int
+    colour
+    {
+      float red
+      float green
+      float blue
+      float alpha
+    }
+    projectile_customparameter
+    {
+    }
+    string ModelName
+    int
+    int
+    int
+    Impact_Sound
+    {
+      int
+      string Sound_Name
+      float
+      float
+      float
+      float
+    }
+  }
+}
+
+HomingLaserBullet01
+{
+  int
+  int
+  int
+  float
+  float
+  float
+  int
+  int
+  float
+}
+
+SentryGunBullet01
+{
+  int
+  string (Null?)
+  int
+  int
+  float Range
+  float Turn_Speed
+  string (Bone to fire from?)
+  structure
+  {
+    float
+    float
+    float
+  }
+  string ProjectileType
+  int Turret_Ammo
+  int firerate
+  int projectile_life?
+  float Projectile_Speed
+  float Projectile_Scale
+  Projectile_CustomParameters
+  {
+  }
+  Shoot_Sound
+  {
+    int
+    string Sound_Name
+    float
+    float
+    float
+    float
+  }
+  string MuzzleFlashType
+  MuzzleFlashParams
+  {
+  }
+}
+
+BombBullet01
+{
+Int   IsMobile
+Int   IsDetector
+Float ?
+Int   PrimerDelay
+Int   ?
+Ptr(3) LedPosition
+{
+  Float Xpos
+  Float Ypos
+  Float Zpos
+}
+Int   ExplosionType (Explosion/Flechettes/Laser(?))
+Ptr(7) (Splendor Properties)
+{
+  Ptr(3)    Spread
+{
+    Float   H. Spread
+    Float   V.Spread
+    Float   V. Offfset
+}
+  Float   (Search Range?)
+  Int     FlechetteCount
+  Int     FlechetteLifetime
+  Float   FlechetteSpeed
+  Float   FlechetteSize
+  Ptr(1)
+{
+    Int     ?
+}
+}
+Ptr(4) (Mystery strings)
+{
+  String  ?
+  String  ?
+  String  ?
+  Int     ?
+}
+}

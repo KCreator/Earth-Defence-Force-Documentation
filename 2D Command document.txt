@@ -1,0 +1,1 @@
+2D(0x3E8, "", 1.0f, "", 1.0f, 1, 1.0f);// void PointAirStrike(wchar_t*, float, wchar_t* sgo_filename, float, int, float);

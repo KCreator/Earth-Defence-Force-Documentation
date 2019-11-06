@@ -1,0 +1,59 @@
+SGO is headered with "SGO", or "OGS" depending on little-endian or not.
+Data directly beyond header might represent an offset to, for instance, the string data.
+SGO is best read as clusters of 4 bytes
+00 00 00 00 00 00 00 xx represents an offset to a structure of size xx, relitive to the begining of the "data type"
+00 00 00 02 00 00 00 04 represents a float
+00 00 00 01 00 00 00 04 represents an integer
+00 00 00 03 00 00 00 xx represents a string offset, relitive to the begining of the "data type"
+unicode strings at the bottom of the file seem relate to positions of data.
+
+Netcode seems to update every 24 frame or so.
+
+createfriendsquad obj1 obj2 count x y z yaw?
+
+M191: Researching the following Byte string:
+00 00 00 3F 9A 62 01 9a b2 01 55 04 D5 00 00 80 3F 15 AC F3 03 36 .......
+
+
+Pattern so far:
+D5 ss ss ss ss 9A xx xx 9a xx xx 55 yy D5 mm mm mm mm
+ss controls the "spread" of the objects
+xx is an offset to the object string (Relative to the start of the string table)
+yy controls soldier count?
+mm controls "scaling"?
+
+(Spread, Leader Object, Follower Object, Count, Scaling)
+
+Potentialy loaded by another data type, further study needed.
+
+M191 data:
+Allied squad info:
+0x4E5: 55 15 9A E4 03 D5 00 00 00 3F 9A 62 01 9A B2 01 55 04 D5 00 00 80 3F
+0x949: 55 16 9A 04 07 D5 00 00 00 3F 9A 46 03 9A 96 03 55 05 D5 00 00 80 3F
+
+55 15
+and
+55 16
+allign with the "key" position, so it may be related.
+
+Mission format data:
+Header contains "BVM P"
+position 0x10 contains offset to string table
+0x18 seems to be the number of "keys"? May not be accurate, however.
+value at 0x1C is the offset to where the keys? seem to start
+int at 0x30 is where a chunk of data starts
+int at 0x34 is the end position of that chunk
+
+3A-3F, 7A-7F, BA-BF, FA-FF aren't used
+
+so to reiterate everything, for a "datatype" byte
+byte & 0x3F indicates the case taken
+and I think it's a safe assumption that the two most significant bits indicate how many bytes are read and by how much the file_seek ptr is incremented additionally
+0x00 = 0
+0x40 = 1
+0x80 = 2
+0xC0 = 4
+
+55 xx: byte, used as an int in most cases
+D5 xx xx xx xx: Float
+9A xx xx: Offset to string (relative to a 4 byte value at 0x10, ie: position = 0x10; startOfStringBuffer = GetInt(Read4Bytes( position )); )

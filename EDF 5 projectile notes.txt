@@ -1,0 +1,2 @@
+Rocket launcher (RocketBullet01):
+"bullet speed before ignition", "time to ignition", "acceleration after ignition", "maximum speed after ignition"

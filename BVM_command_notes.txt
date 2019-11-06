@@ -1,0 +1,132 @@
+Notes about sub_1405AA000:
+RBX contains pointer to top of BVM stack
+RSI contains pointer to pointer to the command being executed (like a program counter)
+
+Opcode size depends on the two most significant bits of the opcode byte.
+0x0  = 0-byte
+0x40 = 1-byte
+0x80 = 2-byte
+0xC0 = 4-byte
+
+00 - No operation. Only 0-byte version.
+01 - Copy value to BVM RAS. [stack - 1] = index, [stack] = value. Arithmetic type specifier indicates source type (LSB) and destination type (MSB). Remove index from stack.
+02 - Remove top value from BVM stack (subtracts top of stack ptr by 8)
+03 - Copies a 4-byte value at the top of the stack and pushes it to the stack (e.g. D5 00 00 80 3F 03 03 will place three copies of 1.0f at the top of the stack).
+// Note for 04,05,06,07 if 0x1 in x is set, top value is float. If 0x2 is set, second to top is float. Otherwise int.
+04 - Reads the byte, x, after the opcode (only 1-byte version, 0x44, is valid?)
+x &= 3
+if x == 0
+	Add the top value (int) of the BVM stack to the second to top value (int). The result is stored as int.
+elif x == 1
+	Add the top value (float) of the BVM stack to the second to top value (int). The result is stored as float.
+elif x == 2
+	Add the top value (int) of the BVM stack to the second to top value (float). The result is stored as float.
+elif x == 3
+	Add the top value (float) of the BVM stack to the second to top value (float). The result is stored as float.
+Remove the top element from the stack.
+05 - Reads the byte, x, after the opcode (only 1-byte version, 0x45, is valid?)
+x &= 3
+if x == 0
+	Subtract the top value (int) of the BVM stack from the second to top value (int). The result is stored as int.
+elif x == 1
+	Subtract the top value (float) of the BVM stack from the second to top value (int). The result is stored as float.
+elif x == 2
+	Subtract the top value (int) of the BVM stack from the second to top value (float). The result is stored as float.
+elif x == 3
+	Subtract the top value (float) of the BVM stack from the second to top value (float). The result is stored as float.
+Remove the top element from the stack.
+06 - Reads the byte, x, after the opcode (only 1-byte version, 0x46, is valid?)
+x &= 3
+if x == 0
+	Multiply the top value (int) of the BVM stack by the second to top value (int). The result is stored as int.
+elif x == 1
+	Multiply the top value (float) of the BVM stack by the second to top value (int). The result is stored as float.
+elif x == 2
+	Multiply the top value (int) of the BVM stack by the second to top value (float). The result is stored as float.
+elif x == 3
+	Multiply the top value (float) of the BVM stack by the second to top value (float). The result is stored as float.
+Remove the top element from the stack.
+07 - Reads the byte, x, after the opcode (only 1-byte version, 0x47, is valid?)
+x &= 3
+if x == 0
+	Divides the second to top value (int) of the BVM stack by the top value (int). The result is stored as int.
+elif x == 1
+	Divides the second to top value (int) of the BVM stack by the top value (float). The result is stored as float.
+elif x == 2
+	Divides the second to top value (float) of the BVM stack by the top value (int). The result is stored as float.
+elif x == 3
+	Divides the second to top value (float) of the BVM stack by the top value (float). The result is stored as float.
+Remove the top element from the stack.
+08 - Signed 4-byte modulo operation of the second to top value in BVM stack by the top value, then pops top value.
+09 - Reads the byte, x, after the opcode (only 1-byte version, 0x49, is valid?)
+if (x | 2) // ex 49 02
+	Negates a float value at top of stack.
+else // ex 49 01
+	Negates an int value at top of stack.
+0A - Reads the byte, x, after the opcode
+if (x | 2) // ex 4A 02
+	Increments a float value at top of stack.
+else // ex 4A 01
+	Increments an int value at top of stack.
+0B - Reads the byte, x, after the opcode (only 1-byte version, 0x4B, is valid?)
+if (x | 2) // ex 4B 02
+	Decrements a float value at top of stack.
+else // ex 4B 01
+	Decrements an int value at top of stack.
+0C - Right arithmetic shift of second to top value in BVM stack by the top value, then pops top value.
+0D - Left logical shift of second to top value in BVM stack by the top value, then pops top value.
+0E - Bitwise AND of second to top value in BVM stack by the top value, then pops top value.
+0F - Bitwise OR of second to top value in BVM stack by the top value, then pops top value.
+10 - Bitwise XOR of second to top value in BVM stack by the top value, then pops top value.
+11 - Bitwise NOT of top value in BVM stack.
+12 - Converts the top value in BVM stack from float to int.
+13 - Converts the top value in BVM stack from int to float.
+14 - Retrieve value from BVM RAS and push it to BVM stack, absolute index
+15 - Load the next <size> bytes into the BVM stack, 4-byte sign extended (occupies 8-byte space). If 0-byte variant, loads the value 0/false.
+16 - Pop value from stack and move it to BVM RAS, next <size bytes> absolute index
+17 - Retrieve value from BVM RAS and push it to BVM stack, relative index
+18 - Push stored relative BVM RAS index + next <size bytes> to stack
+19 - Pop value from stack and move it to BVM RAS, next <size bytes> relative index
+1A - Converts the next <size bytes> (0 if 0-byte version), a relative string offset, into an absolute string offset by adding the relative string offset to the address of the string table. The result is stored on the BVM stack.
+1B - Increment index that BVM RAS is accessed by the next <size> bytes
+1C - Decrement index that BVM RAS is accessed by the next <size> bytes
+1D - [stack - 1] = ([stack] == 0 || [stack - 1] == 0); pop();
+1E - [stack - 1] = ([stack] != 0 || [stack - 1] != 0); pop();
+1F - [stack] = ([stack] == 0);
+20 - [stack - 1] = ([stack] > [stack - 1]); pop();
+21 - [stack - 1] = ([stack] >= [stack - 1]); pop();
+22 - [stack - 1] = ([stack] == [stack - 1]); pop();
+23 - [stack - 1] = ([stack] != [stack - 1]); pop();
+24 - [stack - 1] = ([stack] <= [stack - 1]); pop();
+25 - [stack - 1] = ([stack] < [stack - 1]); pop();
+26 - Unlinked jump if top element on stack == 0
+27 - Unlinked jump if top element on stack != 0
+28 - Unlinked jump relative to the instruction according to the signed next <size> bytes read. 
+29 - Linked jump relative to the instruction according to the signed next <size> bytes read. Stores the value after the current instruction on the BVM callstack.
+2A - Return to the previous value on the BVM callstack.
+2B - ??
+// Note - 2C,2D,2E,2F calls 114D50 with virtual dispatch, so it may be a different function
+2C - Invoke function sub_140114D50 with (_UNKNOWN *, _UNKNOWN *, <pointer to top of BVM stack>, 0, <next size bytes from BVM file 4-byte zero extended>)
+2D - Invoke function sub_140114D50 with (_UNKNOWN *, _UNKNOWN *, <pointer to top of BVM stack>, 1, <next size bytes from BVM file 4-byte zero extended>)
+2E - Invoke function sub_140114D50 with (_UNKNOWN *, _UNKNOWN *, <pointer to top of BVM stack>, 2, <next size bytes from BVM file 4-byte zero extended>)
+2F - Invoke function sub_140114D50 with (_UNKNOWN *, _UNKNOWN *, <pointer to top of BVM stack>, 3, <next size bytes from BVM file 4-byte zero extended>)
+30 - ??
+31 - Reads the byte, x, after the opcode (only 1-byte version, 0x71, is valid?)
+if (x | 2) // ex 71 02
+	Calls gutted print formatting fn (?) with (_UNKNOWN *, %08X:$[f]: %f, <unknown 8-byte>, (float)<top element of BVM stack>), then removes top element of BVM stack.
+else
+	Calls gutted print formatting fn (?) with (_UNKNOWN *, %08X:$[i]: %d, <unknown 8-byte>, (int)<top element of BVM stack>), then removes top element of BVM stack.
+32 - Calls gutted print formatting fn (?) with (_UNKNOWN *, "%08X:$[s]: [%ls]", <unknown char*>, (wchar_t*)<top element of BVM stack>), then removes top element of BVM stack.
+33 - load 1/true onto BVM stack, 8-byte extended. Only 0-byte version.
+34 - Remove two elements x and y from the stack. Unlinked jump, indicated by next <size> bytes, if x != y.
+35 - Remove two elements x and y from the stack. Unlinked jump, indicated by next <size> bytes, if x == y.
+36 - Evaluate two elements on the stack, x and y. Move x to BVM RAS[y], and remove y from the stack.
+37 - ??
+38 - ??
+39 - Invalid (WILL CRASH)
+3A - Invalid (WILL CRASH)
+3B - Invalid (WILL CRASH)
+3C - Invalid (WILL CRASH)
+3D - Invalid (WILL CRASH)
+3E - Invalid (WILL CRASH)
+3F - Invalid (WILL CRASH)

@@ -1,0 +1,94 @@
+All listed names are in EDF5.
+EDF4.1 includes everything that's not in 5.
+Exceptions are noted.
+
+--EDF5 Music--
+BGM_E5S01_Title
+BGM_E5S02_EDFHonbu
+BGM_E5S03_Edit --Same as BGM_E4S03_EditGamen
+BGM_E5S04_OnlineLobby
+BGM_E5S05_Staffroll
+BGM_E5S05_Staffroll_cn
+BGM_E5S05_Staffroll_en
+BGM_E5S05_Staffroll_kr
+BGM_E5S06_OpTelop --Same as BGM_E4S07_OpTelop
+BGM_E5S07_EndingTelop
+BGM_E5S08_EndingTelopOnline
+BGM_Sinkou_Edtelop --Same as BGM_E4S08_EndingTelop; Mistakenly uses EDF2017's naming scheme
+BGM_E5D01_UchujinKouka
+BGM_E5D02_Daikaiju --Same as BGM_Demo_BigMonster
+BGM_E5M01_MainBGM_BeforeHalf
+BGM_E5M02_MainBGM_AfterHalf
+BGM_E5M03_ChiteiTanken
+BGM_E5M04_RansenGekisen
+BGM_E5M05_HisounaruShingun
+BGM_E5M06_KirikakaruMachi --Foggy/Night battle?
+BGM_E5M07_Totsugekiseyo  --That one song that plays at the end of mission 3 where the nix activate
+BGM_E5M08_KyuuhennSuruSenjou
+BGM_E5M09_Heion
+BGM_E5M10_Daikaiju
+BGM_E5M11_MotherShip
+BGM_E5M12_ShouriNoKizashi  --EDF! EDF! EDF!
+BGM_E5M13_KyuuhennSuruSenjou_Kouhan --That tense theme used in certain parts
+BGM_E5M14_Tutorial
+BGM_E5M15_FinalMission
+BGM_E4M16_TutorialHeiwa --Note that it's mistakenly E4
+--EDF4.1 Music--
+BGM_E4S01_TitleGamen
+BGM_E4S02_EDFHonbu
+BGM_E4S03_EditGamen
+BGM_E4S04_OnlineLobby
+BGM_E4S05_TaisenMenu
+BGM_E4S06_StaffRoll --Japanese version in 4.1; Same as BGM_E4EX0_LetsGoEDF in 5
+BGM_E4S07_OpTelop
+BGM_E4S08_EndingTelop
+BGM_E4D01_KyodaiAriShuurai
+BGM_E4D02_UFOShuurai
+BGM_E4D03_HikouYousai
+BGM_E4D04_KyodaiRobotYousai
+BGM_E4D05_ShinMotherShipToujou
+BGM_E4EX0_LetsGoEDF
+BGM_E4M01_MainBGM_A
+BGM_E4M01_MainBGM_B
+BGM_E4M02_RyuNoMure
+BGM_E4M03_Hoshoku
+BGM_E4M04_Taigunarawaru
+BGM_E4M05_Totsugeki
+BGM_E4M05_Totsugeki_old
+BGM_E4M05_Totsugeki_v2
+BGM_E4M05_Totsugeki_v3
+BGM_E4M06_HisounaTatakai
+BGM_E4M07_ChiteiShinko
+BGM_E4M08_EarthEater
+--EDF2017 Music, a few are 4.1's remixes--
+BGM_Sinkou_intermission
+BGM_Sinkou_OPtelop
+BGM_Sinkou_taisenmenu
+BGM_Sinkou_title
+BGM_Demo_2legTank
+BGM_Demo_4legTank
+BGM_Demo_BigMonster
+BGM_Demo_Kyodaiari
+BGM_Demo_MotherShip
+BGM_Demo_UFOencount
+BGM_inGame_chiteishinbu
+BGM_inGame_Gekitou
+BGM_inGame_HisounaTatakai
+BGM_inGame_KougekiKaishi
+BGM_inGame_Kyodaiari
+BGM_inGame_Mothership
+BGM_inGame_Soutousen
+BGM_inGame_Spider
+BGM_inGame_UFOstage
+--EDF2 Music, looped versions from Portable--
+BGM_tikyuu2_enbansyuurai
+BGM_tikyuu2_mothership
+BGM_tikyuu2_saisyuukessen_wakusei
+--Mission End Fanfares--
+Jingle_MissionCleared
+Jingle_MissionCleared_EDF4 --Not in 4.1
+Jingle_MissionClearedFinal
+Jingle_MissionEscape --Not in 4.1
+Jingle_MissionFailed
+Jingle_OnlineClearedFinal
+Jingle_TGScomingSoon

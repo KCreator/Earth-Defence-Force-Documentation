@@ -1,0 +1,870 @@
+2D
+
+2C
+void loc_140114F59(int);
+
+6C 01
+void loc_140114F6C(<any>);
+Note: This function simply pops a value off the BVM stack.
+
+AC 01 XX (XX != 0)
+int loc_140114F7A(wchar_t*, wchar_t*);
+Note: CreateEventObject(waypoint, sgo_filename);
+
+6C 02
+void loc_140114F9C(wchar_t*, float, bool);
+Note: registerevent(function_name, ?, multiple_functions_per_event(?));
+
+AC 02 XX (XX != 0)
+int loc_140114F7A(wchar_t*, wchar_t*);
+Note: CreateEventObject2(waypoint, sgo_filename);
+
+6C 03
+void loc_140114FCF(int);
+
+AC 03 XX (XX != 0)
+void loc_140115000(void);
+
+6C 04
+AC 04 XX (XX != 4)
+void loc_140115074(void);
+
+AC 04 04
+void loc_14011500D(int, bool);
+
+6C 05
+void loc_14011507E(void);
+
+AC 05 XX (0 < XX <= 4)
+int loc_14011509C(wchar_t*, wchar_t*, float);
+Note: CreateVehicle(waypoint, sgo_filename, health_scale(?));
+
+AC 05 XX (XX > 4)
+void loc_1401150B5(void);
+
+6C 06
+void loc_1401150C2(void);
+
+AC 06 XX (XX != 0)
+void loc_1401150D8(int, wchar_t*, wchar_t*, float);
+
+6C 07
+int loc_1401150FE(void);
+
+AC 07 XX (XX != 0)
+void loc_140115154(int, wchar_t*, wchar_t*, float);
+
+6C 08
+void loc_14011517A(void);
+
+AC 08 XX (XX != 0)
+void loc_14011518C(int, wchar_t*, wchar_t*, float, float);
+
+6C 09
+void loc_1401151BA(float);
+
+AC 09 XX (XX != 0)
+void loc_1401151E1(int, int, wchar_t*, wchar_t*, float);
+
+6C 0A
+void loc_140115210(void);
+
+AC 0A XX (XX != 0)
+void loc_140115210(int, int, wchar_t*, wchar_t*, float, float);
+
+6C 0B
+void loc_140115259(void);
+
+AC 0B XX (XX != 0)
+void loc_14011526B(int, wchar_t*, wchar_t*, float, int);
+
+6C 0C
+void loc_140115295(void);
+Note: Sleeps for 10ms and checks if resources are finished loading. Resets BVM PC if resources are not loaded? Can also prevent custom command return values from being pushed to the BVM stack (if loading isn't done?).
+
+AC 0C XX (XX != 0)
+void loc_1401152A7(int, wchar_t*, wchar_t*, float, float, int);
+
+6C 0D
+void loc_1401152DC(wchar_t*, int);
+
+6C 0E 
+void loc_1401152FE(wchar_t*, wchar_t*, int);
+
+AC 0E XX (XX != 0)
+void loc_14011531C(int, wchar_t*, wchar_t*, float, float);
+
+6C 0F
+void loc_14011534D(int);
+
+6C 10
+void loc_14011535D(void);
+
+AC 10 XX (XX != 0)
+void loc_14011536C(void);
+
+6C 11
+void loc_140115379(int);
+
+AC 11 XX (XX != 0)
+void loc_1401153B6(void);
+
+6C 12
+void loc_1401153F8(<any>, <any>, <any>, <any>);
+Note: Only pops 4 elements off the stack.
+
+AC 12 XX (XX != 0)
+void loc_140115406(void);
+
+6C 13
+void loc_140115413(void);
+
+6C 14
+void loc_140115420(int);
+
+AC 14 XX (XX != 0)
+void loc_140115436(void);
+
+6C 15
+int loc_14011544C(void);
+Note: Returns the game currently selected difficulty, enum Difficulty { Easy = 0, Normal = 1, Hard = 2, Hardest = 3, Inferno = 4 }
+
+AC 15 XX (XX != 0)
+void loc_14011546E(void);
+
+6C 16
+void loc_140115481(void);
+
+6C 17
+6C 1B
+6C 25
+6C 2B
+6C 31
+6C 36
+6C 37
+6C 38
+6C 39
+6C 3A
+6C 3B
+6C 3C
+6C 3D
+6C 3E
+6C 3F
+6C 40
+6C 41
+6C 43
+6C 44
+6C 45
+6C 46
+6C 47
+6C 49
+6C 4A
+6C 4B
+6C 4D
+6C 51
+6C 52
+6C 53
+6C 56
+6C 57
+6C 58
+6C 59
+6C 5C
+6C 5D
+6C 60
+6C 61
+6C 6A
+6C 6B
+6C 6C
+6C 6D
+6C 6F
+6C 70
+6C 71
+6C 72
+6C 73
+6C 76
+6C 77
+6C 78
+6C 79
+6C 7B
+6C 7C
+6C 7D
+6C 7E
+6C 7F
+6C 83
+6C 87
+6C 8A
+6C 8B
+6C 8D
+6C 8F
+6C 9E
+6C 9F
+6C A7
+6C A8
+6C A9
+6C AF
+6C B1
+6C B2
+6C B3
+6C B4
+6C B5
+6C B6
+6C B7
+6C BB
+6C BC
+6C BD
+6C BE
+6C BF
+6C C0
+6C C1
+6C C2
+6C C3
+6C C4
+6C C5
+6C C6
+6C C7
+6C DC
+6C DD
+6C DE
+6C DF
+6C E3
+6C F6
+6C F7
+6C F8
+6C F9
+6C FB
+void loc_140117683(void);
+Note: Default (2C) case.
+
+6C 18
+void loc_140115491(int, wchar_t*);
+
+6C 19
+void loc_1401154A8(int, wchar_t*);
+
+6C 1A
+AC 1A XX (XX != 4)
+void loc_1401154DA(int);
+
+AC 1A 04
+int loc_1401154BF(int, int);
+
+6C 1C
+void loc_140115536(int, float);
+Note: Sets an entity's (accessed by the int) route movement speed factor to the float value.
+
+6C 1D
+void loc_140115560(int, wchar_t*);
+Note: SetAiRoute(id, waypoint);
+
+6C 1E
+int loc_140115577(wchar_t*);
+
+AC 1E XX (0 < XX <= 0xC)
+void loc_1401155A1(int, wchar_t*);
+Note: SetAiPath(id, waypoint);
+
+AC 1E XX (XX > 0xC)
+void loc_1401155B5(float, float);
+
+6C 1F
+void loc_1401155CC(int);
+
+AC 1F XX (XX != 0)
+bool loc_140115602(int);
+Note: Returns true if the GameObject is not on a route, else false.
+
+6C 20
+int loc_140115631(void);
+Note: Returns dword_1412535C4 (whatever that is)
+
+AC 20 XX (0 < XX <= 3)
+void loc_140115657(wchar_t*, float, float);
+Note: Explosion(wchar_t*, float, float);
+
+AC 20 XX (3 < XX)
+void loc_140115672(int);
+
+6C 21
+void loc_14011569A(int);
+
+AC 21 XX (0 < XX <= 3)
+loc_1401156CB(wchar_t*, float, float);
+Note: Quale(wchar_t*, float, float);
+
+AC 21 XX (3 < XX)
+void loc_1401156E6(int, bool);
+
+6C 22
+void loc_140115727(void);
+
+AC 22 XX (XX != 0)
+void loc_14011576F(int, int);
+
+6C 23
+void loc_1401157BC(wchar_t*);
+
+AC 23 XX (XX != 0)
+void loc_1401157D5(int, bool);
+
+6C 24
+void loc_140115828(wchar_t*);
+
+AC 24 XX (XX != 0)
+void loc_14011584A(int, float);
+
+6C 26
+int loc_140115898(void);
+Note: Actually decreases the stackptr by 2 elements.
+
+AC 26 XX (XX != 0)
+void loc_1401158AA(int, bool);
+
+6C 27
+int loc_1401158C3(wchar_t*);
+
+AC 27 XX (XX != 0)
+void loc_1401158E5(int, bool);
+
+6C 28
+void loc_140115970(float);
+Note: Creates an EventFactor_Wait which lasts trunc(f * 60.0f) before resolving.
+
+AC 28 0C
+void loc_14011592C(int, float);
+
+6C 29
+void loc_140115A0D(int, float);
+Note: Creates an EventFactor_Timer
+
+AC 29 0C
+void loc_1401159BB(int, bool);
+
+6C 2A
+void loc_140115A64(float);
+Note: Also create an EventFactor_Wait, not sure of the difference.
+
+6C 2C
+void loc_140115AAF(wchar_t*);
+Note: SoundController::PlayBgm(soundname);
+
+6C 2D
+void loc_140115AC0(float);
+
+6C 2E
+void loc_140115AFC(wchar_t*, float);
+
+6C 2F
+void loc_140115B12(wchar_t*, float, float);
+
+6C 30
+void loc_140115B2D(wchar_t*, float, float);
+
+6C 32
+void loc_140115B48(int, int, float);
+
+6C 33
+void loc_140115B7F(int);
+
+6C 34
+void loc_140115BB4(bool);
+
+AC 34 XX (XX != 0)
+void loc_140115BCF(int, int, wchar_t*, int, float, float, float, bool);
+
+6C 35
+void loc_140115C1E(int, int, wchar_t*, int, float, float, bool);
+
+6C 42
+void loc_140115C62(wchar_t*);
+Note: VsStartPosition(wchar_t*);
+
+6C 48
+int loc_140115C76(int, int);
+
+6C 4C
+void loc_140115C89(int);
+
+6C 4E
+void loc_140115CCF(int, float);
+
+6C 4F
+void loc_140115CF9(int, bool);
+
+6C 50
+void loc_140115D29(int, int);
+
+6C 54
+void loc_140115D40(int);
+Note: Creates an EventFactor_AiMoveEnd
+
+6C 55
+void loc_140115DA5(int);
+Note: Creates an EventFactor_AiMoveEndOrDie
+
+6C 5A
+void loc_140115DFA(int);
+Note: Creates an EventFactor_CheckFlag (checks true?)
+
+6C 5B
+void loc_140115E43(int);
+Note: Creates an EventFactor_CheckFlag (checks false?)
+
+6C 5E
+void loc_140115EAD(int);
+Note: Creates an EventFactor_AiFollow
+
+AC 5E 01
+void loc_140115E8C(wchar_t*);
+Note: SoundController::PlayPresetSe(sound_name);
+
+6C 5F
+void loc_140115F0E(wchar_t*, wchar_t*);
+Note: PlaySurroundSe(wchar_t*, wchar_t*);
+
+6C 62
+void loc_140115F23(int, bool);
+
+6C 63
+void loc_140115F64(int, bool);
+
+6C 64
+void loc_140115FA5(wchar_t*, wchar_t*);
+
+AC 64 XX (XX != 0)
+void loc_140115FBF(int, wchar_t*, float, bool);
+Note: SetAiObjectDirection_Point(int, wchar_t*, float, bool);
+
+6C 65
+void loc_140115FE7(void);
+
+AC 65 XX (XX != 0)
+void loc_140115FF6(int, int, float, bool);
+
+6C 66
+void loc_14011601E(wchar_t*);
+Note: MapObjectDestroy(wchar_t*);
+
+AC 66 XX (XX != 0)
+void loc_140116034(int, bool);
+
+6C 67
+void loc_140116063(wchar_t*);
+Note: MapObjectDestroy2(wchar_t*);
+
+6C 68
+void loc_140116074(wchar_t*);
+Note: MapObjectDestroy3(wchar_t*);
+
+6C 69
+void loc_140116085(wchar_t*);
+Note: MapObjectDestroy4(wchar_t*);
+
+6C 6E
+void loc_14011609A(wchar_t*);
+Note: MapObjectInvincible(wchar_t*);
+
+6C 74
+void loc_1401160AB(int, float, wchar_t*, float);
+
+6C 75
+void loc_1401160D2(int, float, wchar_t*, float);
+
+6C 7A
+void loc_1401160F9(int, float);
+
+6C 80
+void loc_140116123(int, int);
+
+6C 81
+void loc_14011618D(int, int);
+
+6C 82
+void loc_1401161A4(int);
+
+6C 84
+void loc_1401161D0(wchar_t*, float);
+
+6C 85
+void loc_1401161E9(wchar_t*, float, int, bool);
+
+6C 86
+void loc_140116212(wchar_t*, int, float, float);
+Note: CreateMob_Path(wchar_t*, int, float, float);
+
+6C 88
+void loc_14011623A(wchar_t*);
+
+6C 89
+void loc_14011624B(wchar_t*, wchar_t*, int, float, float);
+
+6C 8C
+void loc_14011627A(float);
+Note: Creates an EventFactor_AllEnemyDestroy.
+
+6C 8E
+void loc_1401162C1(void);
+
+6C 90
+void loc_1401162DA(int, int);
+
+6C 91
+void loc_1401162F1(wchar_t*);
+
+6C 92
+void loc_140116302(wchar_t*, float, float, float);
+
+6C 93
+void loc_140116328(wchar_t*, int, float, float, float, float);
+
+6C 94
+void loc_140116363(int);
+
+6C 95
+void loc_140116387(int, float, float, float, float, float);
+
+6C 96
+void loc_1401163E6(int, float, float);
+
+AC 96 13
+void loc_140116418(int, int);
+Note: Creates an EventFactor_TeamObjectCount.
+
+6C 97
+void loc_140116486(int, int, int);
+
+AC 97 13
+void loc_140116467(float, float);
+
+6C 98
+void loc_1401164E7(wchar_t*, int, int);
+Note: Creates an EventFactor_AreaTeamObjectCount, which counts units in a certain area rectangle/cylinder/sphere?
+
+AC 98 08
+int loc_1401164A1(float, int, wchar_t*, float, wchar_t*, int);
+
+6C 99
+void loc_140116537(int, int);
+Note: Creates an EventFactor_TeamBigObjectCount.
+
+AC 99 08
+void loc_140116500(int);
+
+6C 9A
+void loc_14011659F(int, wchar_t*, wchar_t*);
+
+AC 9A 01
+void loc_140116582(void);
+
+AC 9A XX (XX > 8)
+void loc_1401165B7(int);
+Note: Creates an EventFactor_TeamGeneratorObjectCount.
+
+6C 9B
+void loc_140116418(int, int);
+Note: Creates an EventFactor_TeamObjectCount.
+
+AC 9B 08
+void loc_1401165FA(int, wchar_t*, float);
+Note: SetDropBoatAutoCruise(int, wchar_t*, float);
+
+6C 9C
+void loc_140116646(int, int);
+Note: Creates an EventFactor_ObjectGroupCount.
+
+AC 9C 13
+void loc_140116622(float, float, float);
+
+6C 9D
+void loc_14011665D(int);
+Note: Creates an EventFactor_ObjectGroupEncount.
+
+6C A0
+void loc_14011668D(int);
+Note: Creates an EventFactor_TeamEncount.
+
+AC A0 0F
+void loc_140116670(wchar_t*);
+
+6C A1
+void loc_1401166C3(int);
+Note: Creates an EventFactor_TeamNotEncount.
+
+6C A2
+void loc_1401166FC(void);
+
+6C A3
+void loc_14011671D(int, wchar_t*, float);
+
+6C A4
+void loc_14011677F(void);
+
+AC A4 01
+void loc_140116739(int, float, float, float, float, float);
+
+6C A5
+void loc_1401167AD(void);
+
+AC A5 01
+void loc_14011678F(wchar_t*, float);
+Note: LookCameraToArea(wchar_t*, float);
+
+6C A6
+void loc_1401167E1(wchar_t*, wchar_t*);
+Note: EventSe(wchar_t*, wchar_t*);
+
+AC A6 0F
+void loc_1401167BD(int, bool);
+
+6C AA
+void loc_1401167BD(int);
+
+6C AB
+void loc_14011681A(int);
+
+6C AC
+void loc_140116868(int, int);
+
+AC AC 0D
+void loc_140116830(int);
+
+6C AD
+void loc_14011689B(void);
+
+6C AE
+int loc_1401168A9(int);
+
+6C B0
+void loc_1401168DC(int, float);
+
+6C B8
+void loc_140116921(wchar_t*)
+Note: Creates an EventFactor_ObjectAreaCheck (specifically an implementation of such to check if the player enters an area).
+
+AC B8 08
+void loc_1401168F4(int);
+
+6C B9
+void loc_14011692F(int);
+
+6C BA
+int loc_14011694A(int);
+
+6C C8
+void loc_140116973(float);
+
+6C C9
+void loc_14011699D(int);
+
+6C CA
+void loc_1401169B2(int, bool);
+
+6C CB
+void loc_1401169EE(int, float);
+
+6C CC
+void loc_140116A06(int, float);
+
+6C CD
+void loc_140116A48(int, bool);
+
+6C CE
+void loc_140116A8A(int);
+
+6C CF
+void loc_140116AAE(int);
+
+6C D0
+void loc_140116B2A(int, float);
+
+AC D0 07
+int loc_140116AF0(wchar_t*, wchar_t*, float, bool);
+Note: CreateEnemy(waypoint, sgo_file, health_scale, has_aggro);
+
+6C D1
+void loc_140116B7A(int, float);
+Note: Multiplies the health of the gameobject by a percentage value indicated by the float.
+
+AC D1 07
+int loc_140116B51(wchar_t*, wchar_t*, float, bool);
+Note: CreateEnemy2(waypoint, sgo_file, health_scale, has_aggro);
+
+6C D2
+void loc_140116BFC(int, bool);
+
+AC D2 07
+void loc_140116BB9(wchar_t*, float, wchar_t*, int, float, bool);
+Note: CreateEnemyGroup(waypoint, radius, sgo_name, count, health_scale, has_aggro);
+
+6C D3
+void loc_140116C3A(wchar_t*, float, wchar_t*, int, float, bool);
+
+6C D4
+void loc_140116C75(wchar_t*, float, wchar_t*, int, float, bool, float);
+
+6C D5
+void loc_140116D07(int, wchar_t*);
+Note: SetObjectPosition(id, waypoint);
+
+AC D5 07
+void loc_140116CBA(wchar_t*, float, wchar_t*, int, float, bool, float);
+
+6C D6
+void loc_140116D56(bool);
+
+AC D6 07
+void loc_140116D1B(wchar_t*, wchar_t*, int, float, bool);
+
+6C D7
+void loc_140116DAD(bool);
+
+AC D7 07
+void loc_140116D6B(wchar_t*, wchar_t*, wchar_t*, int, float, bool);
+Note: CreateFlyingEnemyGroup_Area_Route(wchar_t*, wchar_t*, wchar_t*, int, float, bool);
+
+6C D8
+void loc_140116DC2(wchar_t*, wchar_t*, int, float, bool);
+
+6C D9
+void loc_140116DF5(wchar_t*, wchar_t*, int, float, bool, float);
+
+6C DA
+void loc_140116E32(wchar_t*, wchar_t*, wchar_t*, int, float, bool);
+Note: CreateFlyingEnemyGroup_Area_Route2(wchar_t*, wchar_t*, wchar_t*, int, float, bool);
+
+6C DB
+int loc_140116E6C(wchar_t*, wchar_t*, float, bool, float);
+Note: CreateEnemy_Spawn(wchar_t*, wchar_t*, float, bool, float);
+
+6C E0
+void loc_140116EA9(int, bool);
+
+6C E1
+void loc_140116EE5(int, bool);
+
+6C E2
+void loc_140116F0F(int, bool);
+
+6C E4
+int loc_140116FA4(int, int, int);
+
+AC E4 07
+void loc_140116F59(int, wchar_t*, float, wchar_t*, int, float, bool);
+
+6C E5
+int loc_14011701B(int, int);
+
+AC E5 07
+void loc_140116FC6(int, wchar_t*, float, wchar_t*, int, float, bool, float);
+
+6C E6
+void loc_14011702B(wchar_t*, float, wchar_t*, int, float, bool);
+Note: CreateFlyingEnemyGroup_OnRoute(wchar_t*, float, wchar_t*, int, float, bool);
+
+6C E7
+int loc_140117066(wchar_t*, wchar_t*, float, bool, float);
+
+6C E8
+void loc_140117095(wchar_t*);
+Note: CreatePlayer(waypoint, 0);
+
+6C E9
+void loc_1401170AC(wchar_t*);
+Note: CreatePlayer(waypoint, 1);
+
+6C EA
+void loc_1401170E9(int);
+
+AC EA 03
+void loc_1401170C6(wchar_t*);
+Note: CreatePlayer(waypoint, 2);
+
+6C EB
+void loc_14011711A(int);
+
+AC EB 03
+int loc_1401170F6(void);
+Note: Returns the number of local (?) players.
+
+6C EC
+void loc_14011715D(int, int);
+
+AC EC 03
+int loc_14011712D(int);
+
+AC EC XX (XX > 0B)
+void loc_140117187(float, float, float, float, float, float, float, float, float, float, float, float, int, float, float);
+
+6C ED
+void loc_14011724F(void);
+
+AC ED 03
+int loc_140117223(int);
+
+AC ED XX (XX > 0B)
+void loc_14011727E(float, float, float, float, float, float, float, float, float, int, float, float, float);
+
+6C EE
+int loc_14011732F(wchar_t*, float, wchar_t*, float, wchar_t*, int, float, bool);
+
+AC EE 03
+void loc_140117304(int, int, int);
+
+AC EE XX (XX > 07)
+void loc_140117384(float, int, float, float, float, float, float);
+
+6C EF
+void loc_1401173EA(float, int, float, float, float, float, float);
+
+AC EF 03
+void loc_1401173CB(int, int);
+
+6C F0
+void loc_140117431(int, float);
+
+6C F1
+void loc_140117449(int);
+
+6C F2
+void loc_140117488(int);
+
+AC F2 03
+int loc_14011745C(float, wchar_t*, wchar_t*, bool);
+Note: CreateFriend(float, wchar_t*, wchar_t*, bool);
+
+6C F3
+int loc_140117498(wchar_t*, float, wchar_t*, wchar_t*, int, float, bool);
+Note: CreateFriendSquad(wchar_t*, float, wchar_t*, wchar_t*, int, float, bool);
+
+6C F4
+void loc_140117528(int);
+
+AC F4 03
+void loc_1401174E5(wchar_t*, float, wchar_t*, int, float, bool);
+
+6C F5
+void loc_140117578(int);
+
+AC F5 03
+void loc_140117538(int, wchar_t*, float, wchar_t*, int, float);
+
+6C FA
+void loc_140117588(int);
+
+6C FC
+void loc_1401175C9(int, int, int, bool);
+
+AC FC 03
+int loc_1401175A8(wchar_t*, wchar_t*, float);
+Note: CreatNeutral(wchar_t*, wchar_t*, float);
+
+6C FD
+int loc_1401175ED(wchar_t*, wchar_t*);
+Note: CreateVehicle(waypoint, sgo_filename);
+
+6C FE
+int loc_140117613(wchar_t*, wchar_t*, wchar_t*, wchar_t*, wchar_t*, float);
+Note: CreateTransporter(wchar_t*, wchar_t*, wchar_t*, wchar_t*, wchar_t*, float);
+
+6C FF
+int loc_140117645(wchar_t*, wchar_t*, wchar_t*, wchar_t*, wchar_t*, float);
+Note: CreateTransporter2(wchar_t*, wchar_t*, wchar_t*, wchar_t*, wchar_t*, float);
