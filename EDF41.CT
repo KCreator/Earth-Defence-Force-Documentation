@@ -1,0 +1,1992 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="28">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"Enable"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+aobscanmodule(playerHealthChk1AOB,EDF41.exe,F3 0F 10 80 6C 01 00 00 F3 0F 5E 80 68 01 00 00)
+registersymbol(playerHealthChk1AOB)
+
+label(pPlayer)
+registersymbol(pPlayer)
+
+alloc(newmem,2048,playerHealthChk1AOB) //"EDF41.exe"+3FA63E)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+mov [pPlayer],rax
+
+originalcode:
+movss xmm0,[rax+0000016C]
+
+exit:
+jmp returnhere
+
+///
+pPlayer:
+///
+
+playerHealthChk1AOB: //"EDF41.exe"+3FA63E:
+jmp newmem
+nop
+nop
+nop
+returnhere:
+
+///******************************************************///
+
+aobscanmodule(equipedAmmoChkZero1AOB,EDF41.exe,83 B9 70 08 00 00 00 7F 63)
+registersymbol(equipedAmmoChkZero1AOB)
+
+label(pAmmoUsing)
+registersymbol(pAmmoUsing)
+
+alloc(newmem2,2048,equipedAmmoChkZero1AOB) //"EDF41.exe"+30F9E0)
+label(returnhere2)
+label(originalcode2)
+label(exit2)
+
+newmem2: //this is allocated memory, you have read,write,execute access
+//place your code here
+mov [pAmmoUsing],rcx
+
+originalcode2:
+cmp dword ptr [rcx+00000870],00
+
+exit2:
+jmp returnhere2
+
+///
+pAmmoUsing:
+///
+
+equipedAmmoChkZero1AOB: //"EDF41.exe"+30F9E0:
+jmp newmem2
+nop
+nop
+returnhere2:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+playerHealthChk1AOB: //"EDF41.exe"+3FA63E:
+db F3 0F 10 80 6C 01 00 00
+//Alt: movss xmm0,[rax+0000016C]
+
+unregistersymbol(pPlayer)
+
+///******************************************************///
+
+dealloc(newmem2)
+equipedAmmoChkZero1AOB: //"EDF41.exe"+30F9E0:
+db 83 B9 70 08 00 00 00
+//Alt: cmp dword ptr [rcx+00000870],00
+
+unregistersymbol(pAmmoUsing)
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>14</ID>
+          <Description>"[Scripts]"</Description>
+          <Options moHideChildren="1"/>
+          <LastState Value="" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>7</ID>
+              <Description>"Undead"</Description>
+              <Options moHideChildren="1"/>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+aobscanmodule(healthWrite1cAOB,EDF41.exe,0F 28 C8 F3 0F 11 89 6C 01 00 00 C3)
+registersymbol(healthWrite1cAOB)
+
+label(fMinHealth)
+registersymbol(fMinHealth)
+
+alloc(newmem,2048,healthWrite1cAOB+3) //"EDF41.exe"+28ED71)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+cmp [pPlayer],rcx
+jne originalcode
+cmp dword ptr [fMinHealth],(float)12345678
+jne @f
+comiss xmm1,[rcx+168]
+jae originalcode
+movss xmm1,[rcx+168]
+jmp originalcode
+
+@@:
+comiss xmm1,[fMinHealth]
+jae originalcode
+movss xmm1,[fMinHealth]
+
+originalcode:
+movss [rcx+0000016C],xmm1
+
+exit:
+jmp returnhere
+
+///
+fMinHealth:
+dd (float)1
+///
+
+healthWrite1cAOB+3: //"EDF41.exe"+28ED71:
+jmp newmem
+nop
+nop
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+healthWrite1cAOB+3: //"EDF41.exe"+28ED71:
+db F3 0F 11 89 6C 01 00 00
+//Alt: movss [rcx+0000016C],xmm1
+
+unregistersymbol(fMinHealth)
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>8</ID>
+                  <Description>"Min Health"</Description>
+                  <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">12345678:Max
+</DropDownList>
+                  <VariableType>Float</VariableType>
+                  <Address>fMinHealth</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>0</ID>
+              <Description>"Inf. Ammo Clip"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+aobscanmodule(chkAmmoAfterFireAOB1,EDF41.exe,83 B9 70 08 00 00 00 4C 8B C1)
+aobscanmodule(chkAmmoAfterFireAOB2,EDF41.exe,44 89 A6 70 08 00 00)
+aobscanmodule(chkAmmoAfterFireAOB3,EDF41.exe,7F 0A C7 83 70 08 00 00 00 00 00 00)
+registersymbol(chkAmmoAfterFireAOB1)
+registersymbol(chkAmmoAfterFireAOB2)
+registersymbol(chkAmmoAfterFireAOB3)
+
+alloc(newmem1,2048,chkAmmoAfterFireAOB1) //"EDF41.exe"+310D46)
+alloc(newmem2,2048,chkAmmoAfterFireAOB2)
+alloc(newmem3,2048,chkAmmoAfterFireAOB3)
+label(InfAmmo1)
+label(InfAmmo2)
+label(InfAmmo3)
+label(returnhere1)
+label(returnhere2)
+label(returnhere3)
+label(originalcode1)
+label(originalcode2)
+label(originalcode3)
+
+newmem1:
+cmp dword ptr [rcx+664],100
+je InfAmmo1
+cmp dword ptr [rcx+664],101
+je InfAmmo1
+originalcode1:
+cmp dword ptr [rcx+00000870],00
+jmp returnhere1
+InfAmmo1:
+mov word ptr [rcx+870],#100000
+jmp originalcode1
+chkAmmoAfterFireAOB1:
+jmp newmem1
+nop
+nop
+returnhere1:
+
+newmem2:
+cmp dword ptr [rsi+664],100
+je InfAmmo2
+cmp dword ptr [rsi+664],101
+je InfAmmo2
+originalcode2:
+cmp dword ptr [rsi+00000870],00
+jmp returnhere2
+InfAmmo2:
+mov word ptr [rsi+870],#100000
+jmp originalcode2
+chkAmmoAfterFireAOB2:
+jmp newmem2
+nop
+nop
+returnhere2:
+ 
+newmem3:
+cmp dword ptr [rbx+664],100
+je InfAmmo3
+cmp dword ptr [rbx+664],101
+je InfAmmo3
+originalcode3:
+mov [rbx+00000870],00000000
+jmp returnhere3
+InfAmmo3:
+mov word ptr [rbx+870],#100000
+jmp returnhere3
+chkAmmoAfterFireAOB3+02:
+jmp newmem3
+nop
+nop
+nop
+nop
+nop
+returnhere3:
+
+[DISABLE]
+dealloc(newmem1)
+dealloc(newmem2)
+dealloc(newmem3)
+chkAmmoAfterFireAOB1:
+db 83 B9 70 08 00 00 00
+chkAmmoAfterFireAOB2:
+db 44 89 A6 70 08 00 00
+chkAmmoAfterFireAOB3+02:
+db C7 83 70 08 00 00 00 00 00 00
+unregistersymbol(chkAmmoAfterFireAOB1)
+unregistersymbol(chkAmmoAfterFireAOB2)
+unregistersymbol(chkAmmoAfterFireAOB3)
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>11</ID>
+              <Description>"Inf. "Energy""</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+aobscanmodule(energyWrite1OnUseAOB,EDF41.exe,F3 0F 11 81 78 01 00 00 76 08 ** ** ** ** ** ** ** ** ** ** ** 0F 2F C8)
+registersymbol(energyWrite1OnUseAOB)
+
+alloc(newmem,2048,energyWrite1OnUseAOB) //"EDF41.exe"+2A6075)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+cmp [pPlayer],rcx
+jne originalcode
+movss xmm0,[rcx+174]
+
+originalcode:
+movss [rcx+00000178],xmm0
+
+exit:
+jmp returnhere
+
+///
+
+energyWrite1OnUseAOB: //"EDF41.exe"+2A6075:
+jmp newmem
+nop
+nop
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+energyWrite1OnUseAOB: //"EDF41.exe"+2A6075:
+db F3 0F 11 81 78 01 00 00
+//Alt: movss [rcx+00000178],xmm0
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>17</ID>
+              <Description>"Reload with Full Clip"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+aobscanmodule(ammoChkMaxOnReloadAOB,EDF41.exe,39 81 70 08 00 00 7D 13)
+registersymbol(ammoChkMaxOnReloadAOB)
+
+alloc(newmem,2048,ammoChkMaxOnReloadAOB) //"EDF41.exe"+30F1C6)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+cmp [pAmmoUsing],rcx
+jne originalcode
+mov dword ptr [rcx+870],0
+
+originalcode:
+cmp [rcx+00000870],eax
+
+exit:
+jmp returnhere
+
+///
+
+ammoChkMaxOnReloadAOB: //"EDF41.exe"+30F1C6:
+jmp newmem
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+ammoChkMaxOnReloadAOB: //"EDF41.exe"+30F1C6:
+db 39 81 70 08 00 00
+//Alt: cmp [rcx+00000870],eax
+</AssemblerScript>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>13</ID>
+          <Description>"[Pointers]"</Description>
+          <Options moHideChildren="1"/>
+          <LastState Value="" Activated="1" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>5</ID>
+              <Description>"HP"</Description>
+              <LastState Value="888.4000244" RealAddress="9A42E8B25C"/>
+              <VariableType>Float</VariableType>
+              <Address>pPlayer</Address>
+              <Offsets>
+                <Offset>16C</Offset>
+              </Offsets>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>6</ID>
+                  <Description>"max"</Description>
+                  <LastState Value="888.4000244" RealAddress="9A42E8B258"/>
+                  <VariableType>Float</VariableType>
+                  <Address>-4</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>590</ID>
+                  <Description>"Pos X"</Description>
+                  <LastState Value="C46E88E5" RealAddress="9A42E8B180"/>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Float</VariableType>
+                  <Address>-DC</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>591</ID>
+                  <Description>"Pos Y"</Description>
+                  <LastState Value="418294B2" RealAddress="9A42E8B184"/>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Float</VariableType>
+                  <Address>-D8</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>592</ID>
+                  <Description>"Pos Z"</Description>
+                  <LastState Value="C31C3CB3" RealAddress="9A42E8B188"/>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Float</VariableType>
+                  <Address>-D4</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>9</ID>
+              <Description>""Energy""</Description>
+              <LastState Value="100" RealAddress="9A42E8B268"/>
+              <VariableType>Float</VariableType>
+              <Address>pPlayer</Address>
+              <Offsets>
+                <Offset>178</Offset>
+              </Offsets>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>10</ID>
+                  <Description>"max"</Description>
+                  <LastState Value="100" RealAddress="9A42E8B264"/>
+                  <VariableType>Float</VariableType>
+                  <Address>-4</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>505</ID>
+                  <Description>"Team Damage Byte"</Description>
+                  <LastState Value="0" RealAddress="9A42E8B270"/>
+                  <VariableType>Byte</VariableType>
+                  <Address>+8</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>501</ID>
+                  <Description>"Foe React Byte"</Description>
+                  <LastState Value="0" RealAddress="9A42E8B2F4"/>
+                  <VariableType>Byte</VariableType>
+                  <Address>+8C</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>12</ID>
+              <Description>"Current Ammo Clip"</Description>
+              <LastState Value="8" RealAddress="9A42FB8910"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>pAmmoUsing</Address>
+              <Offsets>
+                <Offset>870</Offset>
+              </Offsets>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>15</ID>
+                  <Description>"Clip Max"</Description>
+                  <LastState Value="8" RealAddress="9A42FB8260"/>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>pAmmoUsing</Address>
+                  <Offsets>
+                    <Offset>1C0</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>16</ID>
+                  <Description>"Pouch?"</Description>
+                  <LastState Value="120" RealAddress="9A42FB8234"/>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>pAmmoUsing</Address>
+                  <Offsets>
+                    <Offset>194</Offset>
+                  </Offsets>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>18</ID>
+      <Description>"Current Weapon Held"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+aobscanmodule(CurWeapAOB,EDF41.exe,41 8B 95 70 08 00 00) // should be unique 
+alloc(newmem,$1000,"EDF41.exe"+40508F)
+
+label(code)
+label(return)
+label(WeaponData)
+registersymbol(WeaponData)
+
+newmem:
+
+code:
+  mov edx,[r13+00000870]
+  mov [WeaponData],r13
+  jmp return
+  WeaponData:
+
+CurWeapAOB:
+  jmp code
+  nop
+  nop
+return:
+registersymbol(CurWeapAOB)
+
+[DISABLE]
+
+CurWeapAOB:
+  db 41 8B 95 70 08 00 00
+
+unregistersymbol(CurWeapAOB) 
+unregistersymbol(WeaponData) 
+dealloc(newmem) 
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>2</ID>
+          <Description>"Base"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>WeaponData</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>475</ID>
+          <Description>"Base Weapon Pointer?"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>WeaponData</Address>
+          <Offsets>
+            <Offset>0</Offset>
+            <Offset>A0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>476</ID>
+          <Description>"Name"</Description>
+          <VariableType>String</VariableType>
+          <Length>30</Length>
+          <Unicode>1</Unicode>
+          <CodePage>0</CodePage>
+          <ZeroTerminate>1</ZeroTerminate>
+          <Address>WeaponData</Address>
+          <Offsets>
+            <Offset>0</Offset>
+            <Offset>138</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>477</ID>
+          <Description>"Reload Speed (Higher is slower)"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>WeaponData</Address>
+          <Offsets>
+            <Offset>194</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>478</ID>
+          <Description>"Max Clip"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>WeaponData</Address>
+          <Offsets>
+            <Offset>1C0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>3</ID>
+          <Description>"Bullet Count"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>WeaponData</Address>
+          <Offsets>
+            <Offset>2E8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>479</ID>
+          <Description>"Fire Rate (Higher is slower)"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>WeaponData</Address>
+          <Offsets>
+            <Offset>2EC</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>480</ID>
+          <Description>"Burst Fire Amount"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>WeaponData</Address>
+          <Offsets>
+            <Offset>2F0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>481</ID>
+          <Description>"Spread"</Description>
+          <VariableType>Float</VariableType>
+          <Address>WeaponData</Address>
+          <Offsets>
+            <Offset>2F8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>482</ID>
+          <Description>"Left Hand X"</Description>
+          <VariableType>Float</VariableType>
+          <Address>WeaponData</Address>
+          <Offsets>
+            <Offset>5D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>483</ID>
+          <Description>"Bullet Speed"</Description>
+          <VariableType>Float</VariableType>
+          <Address>WeaponData</Address>
+          <Offsets>
+            <Offset>654</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>484</ID>
+          <Description>"Bullet Life Span"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>WeaponData</Address>
+          <Offsets>
+            <Offset>658</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>485</ID>
+          <Description>"Projectile Visual Scale?"</Description>
+          <VariableType>Float</VariableType>
+          <Address>WeaponData</Address>
+          <Offsets>
+            <Offset>66C</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>486</ID>
+          <Description>"Projectile Collision Scale?"</Description>
+          <VariableType>Float</VariableType>
+          <Address>WeaponData</Address>
+          <Offsets>
+            <Offset>670</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>487</ID>
+          <Description>"Bullet Color Red?"</Description>
+          <VariableType>Float</VariableType>
+          <Address>WeaponData</Address>
+          <Offsets>
+            <Offset>680</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>488</ID>
+          <Description>"Bullet Color Green?"</Description>
+          <VariableType>Float</VariableType>
+          <Address>WeaponData</Address>
+          <Offsets>
+            <Offset>684</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>489</ID>
+          <Description>"Bullet Color Blue?"</Description>
+          <VariableType>Float</VariableType>
+          <Address>WeaponData</Address>
+          <Offsets>
+            <Offset>688</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>490</ID>
+          <Description>"Ammo Left In Clip"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>WeaponData</Address>
+          <Offsets>
+            <Offset>870</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>19</ID>
+          <Description>"Current Reload Timer"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>WeaponData</Address>
+          <Offsets>
+            <Offset>AD0</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>491</ID>
+      <Description>"SPREAD"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,"EDF41.exe"+311173) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+
+originalcode:
+MOV [rdi+000002F8],(FLOAT)-0
+movss xmm3,[rdi+000002F8]
+
+exit:
+jmp returnhere
+
+"EDF41.exe"+311173:
+jmp newmem
+nop
+nop
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"EDF41.exe"+311173:
+movss xmm3,[rdi+000002F8]
+//Alt: db F3 0F 10 9F F8 02 00 00
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>492</ID>
+      <Description>"HORIZONTAL SPREAD"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,"EDF41.exe"+30FE9C) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+
+originalcode:
+MOV [r12+000002E4],(FLOAT)-0
+movss xmm0,[r12+000002E4]
+
+exit:
+jmp returnhere
+
+"EDF41.exe"+30FE9C:
+jmp newmem
+nop
+nop
+nop
+nop
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"EDF41.exe"+30FE9C:
+movss xmm0,[r12+000002E4]
+//Alt: db F3 41 0F 10 84 24 E4 02 00 00
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>493</ID>
+      <Description>"INSTANT LOCKON"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,"EDF41.exe"+30F3E7) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+
+originalcode:
+addss xmm0,[rdi+00000908]
+addss xmm0,[rdi+00000908]
+addss xmm0,[rdi+00000908]
+addss xmm0,[rdi+00000908]
+exit:
+jmp returnhere
+
+"EDF41.exe"+30F3E7:
+jmp newmem
+nop
+nop
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"EDF41.exe"+30F3E7:
+addss xmm0,[rdi+00000908]
+//Alt: db F3 0F 58 87 08 09 00 00
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>494</ID>
+      <Description>"AttackPowerUP"</Description>
+      <Options moHideChildren="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : EDF41.exe
+  Version: 
+  Date   : 2016-09-02
+  Author : Mahone
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(MultiPowerUPAOB,EDF41.exe,F3 0F 11 80 88 05 00 00) // should be unique
+registersymbol(MultiPowerUPAOB)
+registersymbol(Multiple)
+registersymbol(NPCValues)
+
+alloc(MultiPowerUP,2048,MultiPowerUPAOB)
+alloc(Multiple,4)
+alloc(NPCValues,4)
+label(Multiple2)
+label(PlayerOnly1)
+label(PlayerOnly2)
+label(Returnhere)
+
+MultiPowerUP:
+cmp [NPCValues],0
+je PlayerOnly1
+PlayerOnly2:
+push rbx
+cmp dword ptr [Multiple],(float)0
+jne Multiple2
+mov dword ptr [Multiple],(float)1
+Multiple2:
+mov rbx,[Multiple]
+mov [rax+00000588],rbx
+pop rbx
+jmp Returnhere
+PlayerOnly1:
+cmp dword ptr [rax+664],100
+je PlayerOnly2
+cmp dword ptr [rax+664],101
+je PlayerOnly2
+movss [rax+00000588],xmm0
+jmp Returnhere
+MultiPowerUPAOB:
+jmp MultiPowerUP
+nop
+nop
+nop
+Returnhere:
+
+[DISABLE]
+
+MultiPowerUPAOB:
+db F3 0F 11 80 88 05 00 00
+
+unregistersymbol(MultiPowerUPAOB)
+unregistersymbol(Multiple)
+unregistersymbol(NPCValues)
+dealloc(MultiPowerUP)
+dealloc(Multiple)
+dealloc(NPCValues)
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>495</ID>
+          <Description>"Team"</Description>
+          <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">0:OFF
+1:ON
+</DropDownList>
+          <VariableType>4 Bytes</VariableType>
+          <Address>NPCValues</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>496</ID>
+          <Description>"Multipler"</Description>
+          <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">0.5:0.5
+1:1
+10:10
+1000000:1000000
+</DropDownList>
+          <VariableType>Float</VariableType>
+          <Address>Multiple</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>497</ID>
+      <Description>"third try to locate whatever it is thats not letting the mission instantly win from 1 kill"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,"EDF41.exe"+DB6F2) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+
+originalcode:
+mov [rsi+08],00
+mov rax,[rsp+50]
+
+exit:
+jmp returnhere
+
+"EDF41.exe"+DB6F2:
+jmp newmem
+nop
+nop
+nop
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"EDF41.exe"+DB6F2:
+mov [rsi+08],rax
+mov rax,[rsp+50]
+//Alt: db 48 89 46 08 48 8B 44 24 50
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>498</ID>
+      <Description>"second try to locate whatever it is thats not letting the mission instantly win from 1 kill"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,"EDF41.exe"+14911A) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+
+originalcode:
+mov edi,[rax+40]
+test rbx,rbx
+
+exit:
+jmp returnhere
+
+"EDF41.exe"+14911A:
+jmp newmem
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"EDF41.exe"+14911A:
+mov edi,[rax+40]
+test rbx,rbx
+//Alt: db 8B 78 40 48 85 DB
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>499</ID>
+      <Description>"makes it so you only have to kill half of the enemys in a mission to complete it."</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,"EDF41.exe"+DB6EF) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+
+originalcode:
+dec rax
+mov [rsi+08],00
+
+exit:
+jmp returnhere
+
+"EDF41.exe"+DB6EF:
+jmp newmem
+nop
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"EDF41.exe"+DB6EF:
+dec rax
+mov [rsi+08],rax
+//Alt: db 48 FF C8 48 89 46 08
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>537</ID>
+      <Description>"BGM Volume (Global)"</Description>
+      <LastState Value="3F000000" RealAddress="9A3A6D8AA8"/>
+      <ShowAsHex>1</ShowAsHex>
+      <VariableType>Float</VariableType>
+      <Address>"EDF41.exe"+CC84A0</Address>
+      <Offsets>
+        <Offset>158</Offset>
+      </Offsets>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>553</ID>
+          <Description>"Game Settings"</Description>
+          <Options moManualExpandCollapse="1"/>
+          <LastState Value="3F000000" RealAddress="9A3A6D8AA8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Float</VariableType>
+          <Address>+0</Address>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>539</ID>
+              <Description>"SE Volume"</Description>
+              <LastState Value="0.5" RealAddress="9A3A6D8AAC"/>
+              <VariableType>Float</VariableType>
+              <Address>+4</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>538</ID>
+              <Description>"BGM Volume"</Description>
+              <LastState Value="0.5" RealAddress="9A3A6D8AA8"/>
+              <VariableType>Float</VariableType>
+              <Address>+0</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>540</ID>
+              <Description>"Voice Volume"</Description>
+              <LastState Value="1" RealAddress="9A3A6D8AB0"/>
+              <VariableType>Float</VariableType>
+              <Address>+8</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>552</ID>
+              <Description>"P1 Specific"</Description>
+              <Options moManualExpandCollapse="1"/>
+              <LastState Value="3F000000" RealAddress="9A3A6D8AA8"/>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Float</VariableType>
+              <Address>+0</Address>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>565</ID>
+                  <Description>"UI Mouse Sensitivity?"</Description>
+                  <LastState Value="0.5" RealAddress="9A3A6E316C"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+A6C4</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>548</ID>
+                  <Description>"Rotation Speed"</Description>
+                  <LastState Value="0.6999999881" RealAddress="9A3A6D8AC8"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+20</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>566</ID>
+                  <Description>"Rotation Smooth"</Description>
+                  <LastState Value="0" RealAddress="9A3A6D8ACC"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+24</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>543</ID>
+                  <Description>"Vertical Inverted"</Description>
+                  <DropDownList DisplayValueAsItem="1">00:Normal
+01:Inverted
+</DropDownList>
+                  <LastState Value="01" RealAddress="9A3A6D8AC0"/>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Byte</VariableType>
+                  <Address>+18</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>542</ID>
+                  <Description>"Horizontal Inverted"</Description>
+                  <DropDownList DisplayValueAsItem="1">00:Normal
+01:Inverted
+</DropDownList>
+                  <LastState Value="00" RealAddress="9A3A6D8ABC"/>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Byte</VariableType>
+                  <Address>+14</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>544</ID>
+                  <Description>"Vibration"</Description>
+                  <DropDownList DisplayValueAsItem="1">00:Off
+01:On
+</DropDownList>
+                  <LastState Value="00" RealAddress="9A3A6D8AC4"/>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Byte</VariableType>
+                  <Address>+1C</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>545</ID>
+                  <Description>"Screen Shake"</Description>
+                  <DropDownList DisplayValueAsItem="1">00:Off
+01:On
+</DropDownList>
+                  <LastState Value="01" RealAddress="9A3A6D8AC5"/>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Byte</VariableType>
+                  <Address>+1D</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>546</ID>
+                  <Description>"Camera Effects"</Description>
+                  <DropDownList DisplayValueAsItem="1">00:Off
+01:On
+</DropDownList>
+                  <LastState Value="00" RealAddress="9A3A6D8AC6"/>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Byte</VariableType>
+                  <Address>+1E</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>547</ID>
+                  <Description>"C4???"</Description>
+                  <LastState Value="C4" RealAddress="9A3A6D8AC7"/>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Byte</VariableType>
+                  <Address>+1F</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>541</ID>
+                  <Description>"HUD Size"</Description>
+                  <DropDownList DisplayValueAsItem="1">00:Default
+01:Middle
+02:Small
+</DropDownList>
+                  <LastState Value="00" RealAddress="9A3A6D8AB8"/>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Byte</VariableType>
+                  <Address>+10</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>557</ID>
+              <Description>"P2 Specific"</Description>
+              <Options moManualExpandCollapse="1"/>
+              <LastState Value="3F000000" RealAddress="9A3A6D8AA8"/>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Float</VariableType>
+              <Address>+0</Address>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>562</ID>
+                  <Description>"Rotation Speed"</Description>
+                  <LastState Value="0.5" RealAddress="9A3A6D8F20"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+478</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>567</ID>
+                  <Description>"Rotation Smooth?"</Description>
+                  <LastState Value="0" RealAddress="9A3A6D8F24"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+47C</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>563</ID>
+                  <Description>"Vertical Inverted"</Description>
+                  <DropDownList DisplayValueAsItem="1">00:Normal
+01:Inverted
+</DropDownList>
+                  <LastState Value="01" RealAddress="9A3A6D8F18"/>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Byte</VariableType>
+                  <Address>+470</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>564</ID>
+                  <Description>"Horizontal Inverted"</Description>
+                  <DropDownList DisplayValueAsItem="1">00:Normal
+01:Inverted
+</DropDownList>
+                  <LastState Value="00" RealAddress="9A3A6D8F14"/>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Byte</VariableType>
+                  <Address>+46C</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>558</ID>
+                  <Description>"Vibration"</Description>
+                  <DropDownList DisplayValueAsItem="1">00:Off
+01:On
+</DropDownList>
+                  <LastState Value="00" RealAddress="9A3A6D8F1C"/>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Byte</VariableType>
+                  <Address>+474</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>559</ID>
+                  <Description>"Screen Shake"</Description>
+                  <DropDownList DisplayValueAsItem="1">00:Off
+01:On
+</DropDownList>
+                  <LastState Value="01" RealAddress="9A3A6D8F1D"/>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Byte</VariableType>
+                  <Address>+475</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>560</ID>
+                  <Description>"Camera Effects"</Description>
+                  <DropDownList DisplayValueAsItem="1">00:Off
+01:On
+</DropDownList>
+                  <LastState Value="00" RealAddress="9A3A6D8F1E"/>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Byte</VariableType>
+                  <Address>+476</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>561</ID>
+                  <Description>"Not C4???"</Description>
+                  <LastState Value="00" RealAddress="9A3A6D8F1F"/>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Byte</VariableType>
+                  <Address>+477</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>556</ID>
+                  <Description>"HUD Size"</Description>
+                  <DropDownList DisplayValueAsItem="1">00:Default
+01:Middle
+02:Small
+</DropDownList>
+                  <LastState Value="00" RealAddress="9A3A6D8F10"/>
+                  <ShowAsHex>1</ShowAsHex>
+                  <VariableType>Byte</VariableType>
+                  <Address>+468</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>549</ID>
+              <Description>"Skip Cutscenes"</Description>
+              <DropDownList DisplayValueAsItem="1">00:Off
+01:On
+</DropDownList>
+              <LastState Value="01" RealAddress="9A3A6D97EC"/>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Byte</VariableType>
+              <Address>+D44</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>550</ID>
+              <Description>"Show Steam IDs"</Description>
+              <DropDownList DisplayValueAsItem="1">00:Off
+01:On
+</DropDownList>
+              <LastState Value="00" RealAddress="9A3A6D97ED"/>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Byte</VariableType>
+              <Address>+D45</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>569</ID>
+          <Description>"Globals"</Description>
+          <Options moManualExpandCollapse="1"/>
+          <LastState Value="3F000000" RealAddress="9A3A6D8AA8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Float</VariableType>
+          <Address>+0</Address>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>570</ID>
+              <Description>"Current Mission"</Description>
+              <LastState Value="00" RealAddress="9A3A6D8990"/>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Byte</VariableType>
+              <Address>-118</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>568</ID>
+              <Description>"Current Difficulty"</Description>
+              <DropDownList DisplayValueAsItem="1">00:Easy
+01:Normal
+02:Hard
+03:Hardest
+04:Inferno
+</DropDownList>
+              <LastState Value="03" RealAddress="9A3A6D8994"/>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Byte</VariableType>
+              <Address>-114</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>554</ID>
+              <Description>"Savegame Mission"</Description>
+              <LastState Value="00" RealAddress="9A3A6D9830"/>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Byte</VariableType>
+              <Address>+D88</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>555</ID>
+              <Description>"Savegame Difficulty"</Description>
+              <DropDownList DisplayValueAsItem="1">00:Easy
+01:Normal
+02:Hard
+03:Hardest
+04:Inferno
+</DropDownList>
+              <LastState Value="03" RealAddress="9A3A6D9834"/>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Byte</VariableType>
+              <Address>+D8C</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>571</ID>
+              <Description>"Prevents Player Spawn?"</Description>
+              <DropDownList DisplayValueAsItem="1">00:Normal
+01:Removes Players, Crashes Mid-Game?
+02:Normal?
+</DropDownList>
+              <LastState Value="00" RealAddress="9A3A6D8988"/>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Byte</VariableType>
+              <Address>-120</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>502</ID>
+      <Description>"Menues Open (Temp)"</Description>
+      <ShowAsHex>1</ShowAsHex>
+      <VariableType>Byte</VariableType>
+      <Address>F8C7FFA18</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>536</ID>
+      <Description>"Health (Temp)"</Description>
+      <LastState Value="445E199A" RealAddress="9A42E8B258"/>
+      <ShowAsHex>1</ShowAsHex>
+      <VariableType>4 Bytes</VariableType>
+      <Address>9A42E8B258</Address>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>530</ID>
+          <Description>"Generic Stuff"</Description>
+          <Options moManualExpandCollapse="1"/>
+          <LastState Value="445E199A" RealAddress="9A42E8B258"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>+0</Address>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>589</ID>
+              <Description>"Current Health"</Description>
+              <LastState Value="888.4000244" RealAddress="9A42E8B25C"/>
+              <VariableType>Float</VariableType>
+              <Address>+4</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>533</ID>
+              <Description>"Player X (return)"</Description>
+              <LastState Value="-954.1389771" RealAddress="9A42E8B180"/>
+              <VariableType>Float</VariableType>
+              <Address>-D8</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>532</ID>
+              <Description>"Player Y (return)"</Description>
+              <LastState Value="16.32260513" RealAddress="9A42E8B184"/>
+              <VariableType>Float</VariableType>
+              <Address>-D4</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>529</ID>
+              <Description>"Player Z (return)"</Description>
+              <LastState Value="-156.2371063" RealAddress="9A42E8B188"/>
+              <VariableType>Float</VariableType>
+              <Address>-D0</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>517</ID>
+          <Description>"Camera Stuff"</Description>
+          <Options moManualExpandCollapse="1"/>
+          <LastState Value="445E199A" RealAddress="9A42E8B258"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>+0</Address>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>516</ID>
+              <Description>"Cam No Rotate"</Description>
+              <DropDownList DisplayValueAsItem="1">00:off
+01:on
+</DropDownList>
+              <LastState Value="00" RealAddress="9A42E8B220"/>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Byte</VariableType>
+              <Address>-38</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>520</ID>
+              <Description>"Cam No Position"</Description>
+              <DropDownList DisplayValueAsItem="1">00:off
+01:on
+</DropDownList>
+              <LastState Value="00" RealAddress="9A42E8B204"/>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Byte</VariableType>
+              <Address>-54</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>515</ID>
+              <Description>"Look X"</Description>
+              <LastState Value="0" RealAddress="9A42E8B1E0"/>
+              <VariableType>Float</VariableType>
+              <Address>-78</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>514</ID>
+              <Description>"Look Y"</Description>
+              <LastState Value="2.25" RealAddress="9A42E8B1E4"/>
+              <VariableType>Float</VariableType>
+              <Address>-74</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>513</ID>
+              <Description>"Look Z"</Description>
+              <LastState Value="0" RealAddress="9A42E8B1E8"/>
+              <VariableType>Float</VariableType>
+              <Address>-70</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>511</ID>
+              <Description>"Cam X"</Description>
+              <LastState Value="0" RealAddress="9A42E8B1F0"/>
+              <VariableType>Float</VariableType>
+              <Address>-68</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>510</ID>
+              <Description>"Cam Y"</Description>
+              <LastState Value="2.25" RealAddress="9A42E8B1F4"/>
+              <VariableType>Float</VariableType>
+              <Address>-64</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>509</ID>
+              <Description>"Cam Z"</Description>
+              <LastState Value="-4.4296875" RealAddress="9A42E8B1F8"/>
+              <VariableType>Float</VariableType>
+              <Address>-60</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>521</ID>
+              <Description>"Cam Speed"</Description>
+              <DropDownList DisplayValueAsItem="1">1:instant
+0.1000000015:tanks
+0:frozen
+</DropDownList>
+              <LastState Value="1" RealAddress="9A42E8B200"/>
+              <VariableType>Float</VariableType>
+              <Address>-58</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>508</ID>
+              <Description>"Cam Zoom"</Description>
+              <DropDownList DisplayValueAsItem="1">3FF00000:closest
+3F800000:default
+3F400000:farthest
+</DropDownList>
+              <LastState Value="3F800000" RealAddress="9A42E8B240"/>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Float</VariableType>
+              <Address>-18</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>512</ID>
+              <Description>"Cam Scale from Map Root"</Description>
+              <LastState Value="1" RealAddress="9A42E8B1FC"/>
+              <VariableType>Float</VariableType>
+              <Address>-5C</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>522</ID>
+              <Description>"Cam Collide Mod?"</Description>
+              <DropDownList DisplayValueAsItem="1">1:default
+-1:reversed
+</DropDownList>
+              <LastState Value="1" RealAddress="9A42E8B1EC"/>
+              <VariableType>Float</VariableType>
+              <Address>-6C</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>518</ID>
+          <Description>"Team Stuff"</Description>
+          <Options moManualExpandCollapse="1"/>
+          <LastState Value="445E199A" RealAddress="9A42E8B258"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>+0</Address>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>500</ID>
+              <Description>"Team Damage Byte"</Description>
+              <DropDownList DisplayValueAsItem="1">00:default
+01:alien team, no aliens on radar
+03:friend and foe to both
+</DropDownList>
+              <LastState Value="00" RealAddress="9A42E8B270"/>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Byte</VariableType>
+              <Address>+18</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>504</ID>
+              <Description>"Foe React Byte"</Description>
+              <DropDownList DisplayValueAsItem="1">00:default
+01:ignore
+</DropDownList>
+              <LastState Value="00" RealAddress="9A42E8B2F4"/>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Byte</VariableType>
+              <Address>+9C</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>593</ID>
+          <Description>"Map Stuff (Soldier)"</Description>
+          <Options moManualExpandCollapse="1"/>
+          <LastState Value="1147017626" RealAddress="9A42E8B258"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>+0</Address>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>594</ID>
+              <Description>"Boundary Temp"</Description>
+              <Options moManualExpandCollapse="1"/>
+              <LastState Value="1147017626" RealAddress="9A42E8B258"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>+0</Address>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>595</ID>
+                  <Description>"Boundary X Low"</Description>
+                  <LastState Value="-1347" RealAddress="9A42E8BC10"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+9B8</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>596</ID>
+                  <Description>"Boundary Y Low"</Description>
+                  <LastState Value="-1000" RealAddress="9A42E8BC14"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+9BC</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>597</ID>
+                  <Description>"Boundary Z Low"</Description>
+                  <LastState Value="-1299" RealAddress="9A42E8BC18"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+9C0</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>598</ID>
+                  <Description>"Boundary X High"</Description>
+                  <LastState Value="1253" RealAddress="9A42E8BC20"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+9C8</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>599</ID>
+                  <Description>"Boundary Y High"</Description>
+                  <LastState Value="515" RealAddress="9A42E8BC24"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+9CC</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>600</ID>
+                  <Description>"Boundary Z High"</Description>
+                  <LastState Value="1301" RealAddress="9A42E8BC28"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+9D0</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>601</ID>
+              <Description>"Boundary Static"</Description>
+              <Options moManualExpandCollapse="1"/>
+              <LastState Value="1147017626" RealAddress="9A42E8B258"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>+0</Address>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>602</ID>
+                  <Description>"Boundary X Low"</Description>
+                  <LastState Value="-547" RealAddress="9A42E8BC30"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+9D8</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>603</ID>
+                  <Description>"Boundary Y Low"</Description>
+                  <LastState Value="-1000" RealAddress="9A42E8BC34"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+9DC</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>604</ID>
+                  <Description>"Boundary Z Low"</Description>
+                  <LastState Value="-499" RealAddress="9A42E8BC38"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+9E0</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>605</ID>
+                  <Description>"Boundary X High"</Description>
+                  <LastState Value="453" RealAddress="9A42E8BC40"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+9E8</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>606</ID>
+                  <Description>"Boundary Y High"</Description>
+                  <LastState Value="515" RealAddress="9A42E8BC44"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+9EC</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>607</ID>
+                  <Description>"Boundary Z High"</Description>
+                  <LastState Value="501" RealAddress="9A42E8BC48"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+9F0</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>608</ID>
+                  <Description>"Boundary Addition"</Description>
+                  <LastState Value="800" RealAddress="9A42E8BC50"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+9F8</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>575</ID>
+          <Description>"Map Stuff (Monster)"</Description>
+          <Options moManualExpandCollapse="1"/>
+          <LastState Value="1147017626" RealAddress="9A42E8B258"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>+0</Address>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>582</ID>
+              <Description>"Boundary Temp"</Description>
+              <Options moManualExpandCollapse="1"/>
+              <LastState Value="1147017626" RealAddress="9A42E8B258"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>+0</Address>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>574</ID>
+                  <Description>"Boundary X Low"</Description>
+                  <LastState Value="0.01250000019" RealAddress="9A42E8BD80"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+B28</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>576</ID>
+                  <Description>"Boundary Y Low"</Description>
+                  <LastState Value="0" RealAddress="9A42E8BD84"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+B2C</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>577</ID>
+                  <Description>"Boundary Z Low"</Description>
+                  <LastState Value="0" RealAddress="9A42E8BD88"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+B30</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>578</ID>
+                  <Description>"Boundary X High"</Description>
+                  <LastState Value="1.570796371" RealAddress="9A42E8BD90"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+B38</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>579</ID>
+                  <Description>"Boundary Y High"</Description>
+                  <LastState Value="1.410960674" RealAddress="9A42E8BD94"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+B3C</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>573</ID>
+                  <Description>"Boundary Z High"</Description>
+                  <LastState Value="0" RealAddress="9A42E8BD98"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+B40</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>581</ID>
+              <Description>"Boundary Static"</Description>
+              <Options moManualExpandCollapse="1"/>
+              <LastState Value="1147017626" RealAddress="9A42E8B258"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>+0</Address>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>580</ID>
+                  <Description>"Boundary X Low"</Description>
+                  <LastState Value="1.570796251" RealAddress="9A42E8BDA0"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+B48</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>583</ID>
+                  <Description>"Boundary Y Low"</Description>
+                  <LastState Value="1.410960793" RealAddress="9A42E8BDA4"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+B4C</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>584</ID>
+                  <Description>"Boundary Z Low"</Description>
+                  <LastState Value="0" RealAddress="9A42E8BDA8"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+B50</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>585</ID>
+                  <Description>"Boundary X High"</Description>
+                  <LastState Value="-1" RealAddress="9A42E8BDB0"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+B58</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>586</ID>
+                  <Description>"Boundary Y High"</Description>
+                  <LastState Value="-1" RealAddress="9A42E8BDB4"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+B5C</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>587</ID>
+                  <Description>"Boundary Z High"</Description>
+                  <LastState Value="-1" RealAddress="9A42E8BDB8"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+B60</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>588</ID>
+                  <Description>"Boundary Addition"</Description>
+                  <LastState Value="0.3000000119" RealAddress="9A42E8BDC0"/>
+                  <VariableType>Float</VariableType>
+                  <Address>+B68</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols>
+    <SymbolEntry>
+      <Name>chkAmmoAfterFireAOB</Name>
+      <Address>7FF70CDA0D36</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>chkAmmoAfterFireAOB1</Name>
+      <Address>7FF70CDA0D36</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>chkAmmoAfterFireAOB2</Name>
+      <Address>7FF70CD9ECFC</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>chkAmmoAfterFireAOB3</Name>
+      <Address>7FF70CD9FC3A</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>healthWrite1cAOB</Name>
+      <Address>7FF70CD1ED5E</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>fMinHealth</Name>
+      <Address>7FF70CA3006B</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>ammoChkMaxOnReloadAOB</Name>
+      <Address>7FF70CD9F1B6</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>energyWrite1OnUseAOB</Name>
+      <Address>7FF70CD36065</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>WeaponData</Name>
+      <Address>7FF70CA0001C</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>CurWeapAOB</Name>
+      <Address>7FF70CE952FF</Address>
+    </SymbolEntry>
+  </UserdefinedSymbols>
+  <Comments>-In order to find an entity's data, you must find the max health. 4E6C08CE is what we always used, and it seems to go in order...base, null, max, then current. Remember, current health could decrease, which is why you want max health. Seems to be aligned, so look for what's 0, 8, C.
+-Team Damage Byte
+Seems to crash at game end if non-zero?
+00 default
+01 alien team, no aliens on radar
+02 AI squad team, perhaps?
+03 friend and foe to both
+07 CRASHES
+-Foe React Byte
+00 default
+01 ignore
+-Boundary Floats
+The Boundary Temps are what's used as the map's boundaries. They are automatically calculated based on the Boundary Statics plus the Boundary Addition. If the owning entity is beyond a Boundary Static and the Temp has been extended, then the Temp will stay where it is or return to normal alongside the entity's coordinates when it returns to the map. Basically, extend the map boundaries using Statics or Addition.
+-BGM, SE, Voice volumes are floats, except for how 100 equals 1.
+-Orig desc:
+http://forum.cheatengine.org/viewtopic.php?p=5683274#5683274
+</Comments>
+  <LuaScript>--DO NOT RUN AT START!! Needs max health address!
+--Moves camera offsets of playable entity.
+--O P and [ ] for horizontal camera positioning
+--; ' for vertical camera
+--U I and H J for horizontal lookat point
+--K L for vertical lookat
+--Pressing \ flips the camera to opposite side
+--Right shift to speed up, control to slow
+local f = createForm( true );
+local t = createTimer( f, true );
+timer_setInterval( t, 10 );
+local ActWind = getOpenedProcessID();
+local IncrementVal = 1
+local SpeedUpVal = 1
+local SlasHeld = 0
+--The large number is the max health address
+local CamX = "FA2D48C7C8-68";
+local CamY = "FA2D48C7C8-64";
+local CamZ = "FA2D48C7C8-60";
+local LookX = "FA2D48C7C8-78";
+local LookY = "FA2D48C7C8-74";
+local LookZ = "FA2D48C7C8-70";
+
+
+timer_onTimer( t, function( )
+local CamXVal = readFloat(CamX);
+local CamYVal = readFloat(CamY);
+local CamZVal = readFloat(CamZ);
+local LookXVal = readFloat(LookX);
+local LookYVal = readFloat(LookY);
+local LookZVal = readFloat(LookZ);
+if ActWind == getForegroundProcess() then
+
+if isKeyPressed(VK_RSHIFT) then
+ SpeedUpVal = 2
+elseif isKeyPressed(VK_RCONTROL) then
+ SpeedUpVal = 0.25
+else
+ SpeedUpVal = 1
+end
+
+if isKeyPressed(VK_O) then
+writeFloat(CamZ, CamZVal + IncrementVal * SpeedUpVal);
+end
+if isKeyPressed(VK_P) then
+writeFloat(CamZ, CamZVal - IncrementVal * SpeedUpVal);
+end
+if isKeyPressed(219) then
+writeFloat(CamX, CamXVal + IncrementVal * SpeedUpVal);
+end
+if isKeyPressed(221) then
+writeFloat(CamX, CamXVal - IncrementVal * SpeedUpVal);
+end
+if isKeyPressed(186) then
+writeFloat(CamY, CamYVal + IncrementVal * SpeedUpVal);
+end
+if isKeyPressed(222) then
+writeFloat(CamY, CamYVal - IncrementVal * SpeedUpVal);
+end
+if isKeyPressed(VK_H) then
+writeFloat(LookX, LookXVal + IncrementVal * SpeedUpVal);
+end
+if isKeyPressed(VK_J) then
+writeFloat(LookX, LookXVal - IncrementVal * SpeedUpVal);
+end
+if isKeyPressed(VK_K) then
+writeFloat(LookY, LookYVal + IncrementVal * SpeedUpVal);
+end
+if isKeyPressed(VK_L) then
+writeFloat(LookY, LookYVal - IncrementVal * SpeedUpVal);
+end
+if isKeyPressed(VK_U) then
+writeFloat(LookZ, LookZVal + IncrementVal * SpeedUpVal);
+end
+if isKeyPressed(VK_I) then
+writeFloat(LookZ, LookZVal - IncrementVal * SpeedUpVal);
+end
+if isKeyPressed(220) then
+ if SlasHeld == 0 then
+  SlasHeld = 1
+  writeFloat(CamX, CamXVal * -1);
+  writeFloat(CamZ, CamZVal * -1);
+ else
+
+ end
+end
+if not isKeyPressed(220) then
+ SlasHeld = 0
+end
+end
+--writeFloat(CamZ, SaurZ + ZOff);
+--writeFloat(CamY, SaurY + YOff);
+--writeFloat(CamX, SaurX + XOff);
+
+end );
+
+
+</LuaScript>
+</CheatTable>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="28">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"Enable"</Description>
+      <Options moHideChildren="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+aobscanmodule(playerHealthChk1AOB,EDF41.exe,F3 0F 10 80 6C 01 00 00 F3 0F 5E 80 68 01 00 00)
+registersymbol(playerHealthChk1AOB)
+
+label(pPlayer)
+registersymbol(pPlayer)
+
+alloc(newmem,2048,playerHealthChk1AOB) //"EDF41.exe"+3FA63E)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+mov [pPlayer],rax
+
+originalcode:
+movss xmm0,[rax+0000016C]
+
+exit:
+jmp returnhere
+
+///
+pPlayer:
+///
+
+playerHealthChk1AOB: //"EDF41.exe"+3FA63E:
+jmp newmem
+nop
+nop
+nop
+returnhere:
+
+///******************************************************///
+
+aobscanmodule(equipedAmmoChkZero1AOB,EDF41.exe,83 B9 70 08 00 00 00 7F 63)
+registersymbol(equipedAmmoChkZero1AOB)
+
+label(pAmmoUsing)
+registersymbol(pAmmoUsing)
+
+alloc(newmem2,2048,equipedAmmoChkZero1AOB) //"EDF41.exe"+30F9E0)
+label(returnhere2)
+label(originalcode2)
+label(exit2)
+
+newmem2: //this is allocated memory, you have read,write,execute access
+//place your code here
+mov [pAmmoUsing],rcx
+
+originalcode2:
+cmp dword ptr [rcx+00000870],00
+
+exit2:
+jmp returnhere2
+
+///
+pAmmoUsing:
+///
+
+equipedAmmoChkZero1AOB: //"EDF41.exe"+30F9E0:
+jmp newmem2
+nop
+nop
+returnhere2:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+playerHealthChk1AOB: //"EDF41.exe"+3FA63E:
+db F3 0F 10 80 6C 01 00 00
+//Alt: movss xmm0,[rax+0000016C]
+
+unregistersymbol(pPlayer)
+
+///******************************************************///
+
+dealloc(newmem2)
+equipedAmmoChkZero1AOB: //"EDF41.exe"+30F9E0:
+db 83 B9 70 08 00 00 00
+//Alt: cmp dword ptr [rcx+00000870],00
+
+unregistersymbol(pAmmoUsing)
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>5</ID>
+          <Description>"HP"</Description>
+          <VariableType>Float</VariableType>
+          <Address>pPlayer</Address>
+          <Offsets>
+            <Offset>16C</Offset>
+          </Offsets>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>6</ID>
+              <Description>"max"</Description>
+              <VariableType>Float</VariableType>
+              <Address>-4</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>590</ID>
+              <Description>"Pos X"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Float</VariableType>
+              <Address>-DC</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>591</ID>
+              <Description>"Pos Y"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Float</VariableType>
+              <Address>-D8</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>592</ID>
+              <Description>"Pos Z"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Float</VariableType>
+              <Address>-D4</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols>
+    <SymbolEntry>
+      <Name>chkAmmoAfterFireAOB</Name>
+      <Address>7FF70CDA0D36</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>chkAmmoAfterFireAOB1</Name>
+      <Address>7FF70CDA0D36</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>chkAmmoAfterFireAOB2</Name>
+      <Address>7FF70CD9ECFC</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>chkAmmoAfterFireAOB3</Name>
+      <Address>7FF70CD9FC3A</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>healthWrite1cAOB</Name>
+      <Address>7FF70CD1ED5E</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>fMinHealth</Name>
+      <Address>7FF70CA3006B</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>ammoChkMaxOnReloadAOB</Name>
+      <Address>7FF70CD9F1B6</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>energyWrite1OnUseAOB</Name>
+      <Address>7FF70CD36065</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>WeaponData</Name>
+      <Address>7FF70CA0001C</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>CurWeapAOB</Name>
+      <Address>7FF70CE952FF</Address>
+    </SymbolEntry>
+  </UserdefinedSymbols>
+  <Comments>-Uses data from table:
+http://forum.cheatengine.org/viewtopic.php?p=5683274#5683274
+(the link no longer exists...)
+</Comments>
+  <LuaScript>
+</LuaScript>
+</CheatTable>
